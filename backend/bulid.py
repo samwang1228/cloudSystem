@@ -1,6 +1,6 @@
 import sqlite3
 import os
-filepath = os.path.join('static/uploads/user')
+filepath = os.path.join('share/uploads/user')
 os.makedirs(filepath, exist_ok=True)
 SQLITE_DB_PATH = 'backend/SparkVideo.db'
 SQLITE_DB_SCHEMA = 'backend/create_db.sql'

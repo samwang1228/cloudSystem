@@ -13,7 +13,7 @@ from flask_login import LoginManager, UserMixin, LoginManager, login_user, logou
 import os
  
 import requests
- 
+import time
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
 from functools import wraps
@@ -276,6 +276,7 @@ def user():
 @login_required
 def upload_file():
     root=''
+    info=[]
     username = current_user.get_id()
     if 'filename' not in request.files:   # 如果表單的「檔案」欄位沒有'filename'
         flash('沒有上傳檔案')
@@ -289,15 +290,23 @@ def upload_file():
         # filename = secure_filename(file.filename)  # 轉成「安全的檔名」 
         
         filename = file.filename
-        filepath = os.path.join(SRC_PATH,  'static', 'uploads',username)
-         
+        filepath = os.path.join(SRC_PATH,  'share', 'uploads',username)
         file.save(os.path.join(filepath, filename))
+        #  result path
+        filepath = os.path.join(SRC_PATH,  'share', 'uploads',username,'result',filename.split('.')[0])
+        os.makedirs(filepath, exist_ok=True)
+        info.clear()
+        f = open(os.path.join(filepath,'test.txt'),encoding='utf-8')
+        for line in f.readlines():
+            info.append(line)
+        f.close
+        time.sleep(10)
+        picUrl=str(info[2])
         root=f'{filepath}\\' #影片的位置
         video_name=filename #影片的名字
-        
-        flash('影像上傳完畢！')
+        flash('檔案上傳完畢！')
         # 顯示頁面並傳入上傳的檔名
-        return render_template('user.html', user=username,filename=filename)
+        return render_template('user.html', user=username,filename=filename,name=info[1],songname=info[0],song=info[3],link=picUrl[3:len(picUrl)-1])
     else:
         errorMsg='<i class="bi bi-exclamation-triangle-fill"></i> 僅允許上傳mp4、mov影像檔'
         return render_template('user.html',errorMsg=errorMsg,user=username)  # 令瀏覽器跳回首頁

@@ -58,9 +58,21 @@
 
         <label>{{filename}}已上傳</label>
         <!-- 如果filename變數值不是空的，則顯示影像。 -->
-         
+        <div class="card mx-auto" style="width: 18rem;">
+            <img class="card-img-top" src={{link}} alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{songname}}</h6>
+              <p class="card-text">{{song}}</p>
+              <a href="#" class="btn btn-primary">Go here</a>
+            </div>
+          </div>
         {% endif %}
         <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}" onsubmit="return checkSubmit(this)">
+            <div id="wait" style="display:none">
+                <p>Please wait while the file is being uploaded...</p>
+                <img src="{{ url_for('static', filename='images/ani.gif') }}">
+            </div>
             <button class="btn btn-outline-info" onclick="document.getElementById('getFile').click()"value="select" name="select">選擇檔案</button>
             <input type="file" id="getFile" style="display:none" name="filename"  required>
             <input type="submit" class="btn btn-outline-info" value="上傳" onclick="onUploadButton()">
