@@ -12,15 +12,11 @@ from flask import Flask, g, flash, url_for, redirect,  render_template, request,
 from flask_login import LoginManager, UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 import os
  
-import requests
 import time
-from pip._vendor import cachecontrol
-import google.auth.transport.requests
+# from pip._vendor import cachecontrol
 from functools import wraps
-import requests
-import shutil
+# import requests
 # your model
-from object.createFile import CreateFile
 # 取得目前檔案所在的資料夾
 # 要使用current_user來記錄登入資訊
 # current_user.get.id() 6796
@@ -224,30 +220,7 @@ def login():
     username = current_user.get_id()
     return render_template('user.html',user=username)
 
-@app.route("/callback")  #this is the page that will handle the callback process meaning process after the authorization
-def callback():
-    flow.fetch_token(authorization_response=request.url)
-
-    if not session["state"] == request.args["state"]:
-        abort(500)  #state does not match!
-
-    credentials = flow.credentials
-    request_session = requests.session()
-    cached_session = cachecontrol.CacheControl(request_session)
-    token_request = google.auth.transport.requests.Request(session=cached_session)
-
-    id_info = id_token.verify_oauth2_token(
-        id_token=credentials._id_token,
-        request=token_request,
-        audience=GOOGLE_CLIENT_ID
-    )
-
-    session["google_id"] = id_info.get("sub")  #defing the results to show on the page
-    session["name"] = id_info.get("name")
-    user = id_info.get("name")
-    return render_template('user.html',user=user)  #the final page where the authorized users will end up
-
-
+ 
 @app.route('/manager', methods=['GET', 'POST']) #登入  
 def manager():
     user=current_user.get_id()
