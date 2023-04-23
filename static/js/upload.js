@@ -18,6 +18,7 @@ function onUploadButton()
 function checkSubmit(){			
 	if(confirm(msg)){
 			document.getElementById("wait").style.display = "block";
+			document.getElementById("fin").style.display = "none";
 			return true;
 		}
 		else{

@@ -277,6 +277,7 @@ def user():
 def upload_file():
     root=''
     info=[]
+    filename=''
     username = current_user.get_id()
     if 'filename' not in request.files:   # 如果表單的「檔案」欄位沒有'filename'
         flash('沒有上傳檔案')
