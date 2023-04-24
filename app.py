@@ -243,7 +243,38 @@ def user():
     username = current_user.get_id()
     return render_template('user.html',user=username)
 
- 
+@app.route('/status')
+def read_text():
+    text=''
+    path = os.path.join('share','uploads','user','result')
+    obj = os.scandir(path)
+    cnt=0
+    # print("Files and Directories in '% s':" % path)
+    for entry in obj :
+        state = os.path.join(path , entry.name,'computing')
+        output = os.path.join(path , entry.name ,'output.txt')
+        inputfile = os.path.join(path , entry.name ,'input.mp3')
+        text+=entry.name
+        text+=' '
+        if os.path.isfile(output):
+            text+='3'
+        elif os.path.isfile(state):
+            text+='2'
+        
+        elif os.path.isfile(inputfile):
+            text+='1'
+        text+=' '
+    return text
+
+@app.route('/text')
+def get_text():
+    path = os.path.join('share','uploads','user','result')
+    obj = os.scandir(path)
+    cnt=0
+    # print("Files and Directories in '% s':" % path)
+    for entry in obj :
+        cnt+=1
+    return render_template('test.html',size=cnt)
 
 @app.route('/user.html', methods=['POST'])
 @login_required
