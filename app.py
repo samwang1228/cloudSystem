@@ -35,7 +35,7 @@ password_db = '123456'
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in  ALLOWED_EXTENSIONS
 app = Flask(__name__)
-run_with_ngrok(app)
+# run_with_ngrok(app)
 app.secret_key =  b'_5#y2L"F4Q8z\n\xec]/' 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER          # 設置儲存上傳檔的資料夾 
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024  * 1024 * 1024 # 上傳檔最大16GB
@@ -345,6 +345,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run()
-    # app.run(debug = True,host = '0.0.0.0')
+    # app.run()
+    app.run(debug = True,host = '0.0.0.0')
 
