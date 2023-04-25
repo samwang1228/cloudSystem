@@ -5,16 +5,22 @@ import json
  
 import sqlite3
  
- 
+import subprocess
 import pathlib
  
 from flask import Flask, g, flash, url_for, redirect,  render_template, request, session, abort, redirect
 from flask_login import LoginManager, UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 import os
- 
+from flask_ngrok import run_with_ngrok
 import time
 # from pip._vendor import cachecontrol
 from functools import wraps
+from werkzeug.middleware.proxy_fix import ProxyFix
+
+# solve login status
+app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1)
+
 # import requests
 # your model
 # 取得目前檔案所在的資料夾
@@ -29,6 +35,7 @@ password_db = '123456'
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in  ALLOWED_EXTENSIONS
 app = Flask(__name__)
+run_with_ngrok(app)
 app.secret_key =  b'_5#y2L"F4Q8z\n\xec]/' 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER          # 設置儲存上傳檔的資料夾 
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024  * 1024 * 1024 # 上傳檔最大16GB
@@ -276,6 +283,11 @@ def get_text():
         cnt+=1
     return render_template('test.html',size=cnt)
 
+@app.route('/top')
+def show_top():
+    top_output = subprocess.check_output(['top', '-bn', '1', '-i', '-c']).decode('utf-8')
+    return render_template('cpu.html', top_output=top_output)
+
 @app.route('/user.html', methods=['POST'])
 @login_required
 def upload_file():
@@ -333,5 +345,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug = True,host = '0.0.0.0')
+    app.run()
+    # app.run(debug = True,host = '0.0.0.0')
 
