@@ -285,11 +285,10 @@ def get_text():
 
 @app.route('/top')
 def show_top():
-    now = datetime.now()
-    cmd = ['top', '-bn', '1', '-i', '-c']
-    result = subprocess.run(cmd, stdout=subprocess.PIPE)
-    output = result.stdout.decode('utf-8').split('\n')
-    return render_template('cpu.html', output=output,now=now)
+    process = subprocess.Popen(['top', '-bn', '1', '-i', '-c'], stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    top_output = output.decode('utf-8').split('\n')
+    return render_template('cpu.html', top_output=top_output)
 
 
 @app.route('/user.html', methods=['POST'])
