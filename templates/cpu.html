@@ -42,11 +42,12 @@
     {% include "base.html" %}
     <!-- Masthead-->
     {% include "side-menu.html" %}
+    
     <header class="upload text-center  ">
-        {% for line in top_output %}
-        <div>{{ line }}</div>
-        {% endfor %}
+        <h1>System Status</h1>
+        
 
+        <div>{{table}}</div>
         
 
     </header>
