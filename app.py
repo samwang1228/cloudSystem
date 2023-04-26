@@ -4,7 +4,7 @@ from fileinput import filename
 import json
 from datetime import datetime
 import sqlite3
-from bs4 import BeautifulSoup 
+ 
 import subprocess
 import pathlib
  
@@ -285,11 +285,10 @@ def get_text():
 
 @app.route('/top')
 def show_top():
-    result = subprocess.run(['top', '-bn', '1', '-i', '-c'], stdout=subprocess.PIPE)
-    output = result.stdout.decode('utf-8')
-    soup = BeautifulSoup('<table>' + ''.join(['<tr><td>{}</td></tr>'.format(l) for l in output.split('\n')]) + '</table>', 'html.parser')
-    # return render_template('top.html', table=soup.prettify())
-    return render_template('cpu.html', table=soup.prettify())
+    process = subprocess.Popen(['top', '-bn', '1', '-i', '-c'], stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    top_output = output.decode('utf-8').split('\n')
+    return render_template('cpu.html', top_output=top_output)
 
 
 @app.route('/user.html', methods=['POST'])

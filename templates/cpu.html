@@ -45,9 +45,11 @@
     
     <header class="upload text-center  ">
         <h1>System Status</h1>
+        <h2>web server</h2>
+        {% for line in top_output %}
+        <div>{{ line }}</div>
+        {% endfor %}
         
-
-        <div>{{table}}</div>
         
 
     </header>
