@@ -288,7 +288,7 @@ def show_top():
     cmd = ['top', '-bn', '1', '-i', '-c']
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
     output = result.stdout.decode('utf-8').split('\n')
-    return render_template('index.html', output=output)
+    return render_template('cpu.html', output=output)
 
 
 @app.route('/user.html', methods=['POST'])
