@@ -2,7 +2,7 @@
 import csv
 from fileinput import filename
 import json
- 
+from datetime import datetime
 import sqlite3
  
 import subprocess
@@ -285,10 +285,11 @@ def get_text():
 
 @app.route('/top')
 def show_top():
+    now = datetime.now()
     cmd = ['top', '-bn', '1', '-i', '-c']
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
     output = result.stdout.decode('utf-8').split('\n')
-    return render_template('cpu.html', output=output)
+    return render_template('cpu.html', output=output,now=now)
 
 
 @app.route('/user.html', methods=['POST'])
