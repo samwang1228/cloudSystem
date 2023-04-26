@@ -285,8 +285,11 @@ def get_text():
 
 @app.route('/top')
 def show_top():
-    top_output = subprocess.check_output(['top', '-bn', '1', '-i', '-c']).decode('utf-8')
-    return render_template('cpu.html', top_output=top_output)
+    cmd = ['top', '-bn', '1', '-i', '-c']
+    result = subprocess.run(cmd, stdout=subprocess.PIPE)
+    output = result.stdout.decode('utf-8').split('\n')
+    return render_template('index.html', output=output)
+
 
 @app.route('/user.html', methods=['POST'])
 @login_required
