@@ -274,7 +274,7 @@ def read_text():
         text+=' '
         if os.path.isfile(output) and os.path.isfile(lr) and os.path.isfile(melody):
             text+='5'
-        elif os.path.isfile(comp3) and os.path.isfile(comp2):
+        elif os.path.isfile(comp3) and os.path.isfile(comp2) and (not os.path.isfile(melody)) and (not os.path.isfile(lr)):
             text+='6'
         elif os.path.isfile(comp3) and  (not os.path.isfile(melody)):
             text+='4'
