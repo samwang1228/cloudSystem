@@ -112,13 +112,15 @@
                 //     document.getElementById(`${i}status${text[i - 1]}`).innerHTML = '工作' + i +' ✔️';
                 // }
                 // var match=text;
-                var deleteButtons = document.getElementsByClassName("btn-delete");
-                for (var i = 0; i < deleteButtons.length; i++) {
-                deleteButtons[i].addEventListener("click", function() {
-                    // 獲取到所在行並刪除
-                    this.parentNode.parentNode.remove();
-                });
-                }
+
+                // var deleteButtons = document.getElementsByClassName("btn-delete");
+                // for (var i = 0; i < deleteButtons.length; i++) {
+                // deleteButtons[i].addEventListener("click", function() {
+                //     // 獲取到所在行並刪除
+                //     this.parentNode.parentNode.remove();
+                // });
+                // }
+                
                 id=text.split(' ');
                 var id_group=[];
                 var nums=[];
