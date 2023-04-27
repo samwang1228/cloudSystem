@@ -341,7 +341,7 @@ def upload_file():
         f.close
 
         # time.sleep(10)
-        picUrl=str(info[2])
+        # picUrl=str(info[2])
         root=f'{filepath}\\' #影片的位置
         video_name=filename #影片的名字
         flash('檔案上傳完畢！')
