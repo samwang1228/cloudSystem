@@ -126,16 +126,16 @@
                 }
                 for(let j=1 ; j<=id_group.length;j++){
 
-                    // for(i=1;i<=id_group.length;i++){
-                    //     document.getElementById(`${j}status${i}`).innerHTML =  '';
-                    // }
+                    for(let i=1;i<=id_group.length;i++){
+                        document.getElementById(`${j}status${i}`).innerHTML =  '';
+                    }
                     var folderInput = document.getElementById(`folder-input${i}`);
                     folderInput.value = `id${j}`;
                     document.getElementById(`id${j}`).innerHTML = id_group[j-1];
                     document.getElementById(`${j}status${nums[j - 1]}`).innerHTML =  '✔️';
                 }
-                document.getElementById(`id`).innerHTML = id_group;
-                document.getElementById(`st`).innerHTML = nums;
+                // document.getElementById(`id`).innerHTML = id_group;
+                // document.getElementById(`st`).innerHTML = nums;
                 // document.getElementById(`test`).innerHTML = text;
             });
         }

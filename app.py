@@ -279,7 +279,7 @@ def read_text():
             text+='1'
         text+=' '
     return text
-@app.route('/delete-folder', methods=['POST'])
+@app.route('/delete_folder', methods=['POST'])
 def delete_folder():
     # path='/share'
     folder_name = request.form['folder_name']
