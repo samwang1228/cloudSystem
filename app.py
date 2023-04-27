@@ -283,13 +283,24 @@ def read_text():
 @app.route('/delete_folder', methods=['POST'])
 def delete_folder():
     # path='/share'
+    file=[]
     folder_name = request.form['folder_name']
     path='/share/'+folder_name
     try:
         shutil.rmtree(path)
-        redirect(url_for('text'))
     except OSError as e:
         return "刪除失敗：{}".format(e)
+    path = '/share'
+    obj = os.scandir(path)
+    for entry in obj :
+        if(entry.name=='songs'):
+            tt=0
+        elif(entry.name=='core'):
+            tt=0
+        else:
+            cnt+=1
+            file.append(entry.name)
+    return render_template('test.html',size=cnt,folders=file)
 @app.route('/text')
 def get_text():
     # path = os.path.join('share','uploads','user','result')
