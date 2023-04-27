@@ -328,7 +328,7 @@ def upload_file():
         while(1):
             if(os.path.isfile(filepath +'/output.txt')):
                 break
-        f = open(filedir,encoding='utf-8')
+        f = open(filedir)
         cnt=0
         for line in f.readlines():
             cnt+=1

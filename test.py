@@ -4,6 +4,7 @@ f = open(os.path.join('test.txt'),encoding='utf-8')
 cnt=0
 info=[]
 ryric=''
+info.clear()
 for line in f.readlines():
     cnt+=1
     if(cnt>=4):
