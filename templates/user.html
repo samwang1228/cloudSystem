@@ -67,6 +67,28 @@
               <a href="#" class="btn btn-primary">Go here</a>
             </div>
           </div>
+          <table class="table table-striped text-light">
+            <thead>
+                <tr>
+                    <th scope="col">歌名</th>
+                    <th scope="col">網址</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(1, size+1) %}
+                <tr class="text-light">
+                    <th scope="row">
+                        <div >{{lr[i-1]}}</div>
+                    </th>
+                    <td><button class="btn btn-danger btn-delete" onclick="location.href='{{url[i]}}'">前往</button></td>
+                </tr>
+
+            </tbody>
+            {% endfor %}
+        </table>
+                {% for i in range(1, size2+1) %}
+                 <div>{{me[i-1]}}</div>
+            {% endfor %}
         {% endif %}
         <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}" onsubmit="return checkSubmit(this)">
             <div id="wait" style="display:none">
@@ -79,7 +101,7 @@
             <h1><label id="file-name"></label></h1>
 
         </form>
-            <div>{{name}}</div>
+           
     </header>
 
 

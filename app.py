@@ -307,6 +307,9 @@ def upload_file():
     root=''
     info=[]
     filename=''
+    lr=[]
+    url=[]
+    me=[]
     username = current_user.get_id()
     if 'filename' not in request.files:   # 如果表單的「檔案」欄位沒有'filename'
         flash('沒有上傳檔案')
@@ -350,14 +353,23 @@ def upload_file():
                 ryric+=str(line)
             info.append(line)
         f.close
-
+        filedir = filepath+'/outputlyric.txt'
+        f = open(filedir,'r')
+        for line in f.readlines():
+            lr.append(line[0:line.find('https/')])
+            url.append(line[line.find('http'):len(line)-1])
         # time.sleep(10)
+        f.close
         picUrl=str(info[2])
         root=f'{filepath}\\' #影片的位置
         video_name=filename #影片的名字
         flash('檔案上傳完畢！')
+        filedir = filepath + '/outputmelody.txt'
+        f = open(filedir,'r')
         # 顯示頁面並傳入上傳的檔名
-        return render_template('user.html', user=username,filename=filename,name=info[1],songname=info[0],song=ryric,link=picUrl[6:len(picUrl)-1])
+        for line in f.readlines():
+            me.append(line)
+        return render_template('user.html', user=username,filename=filename,name=info[1],songname=info[0],song=ryric,link=picUrl[6:len(picUrl)-1],size=len(url),url=url,lr=lr,me=me,size2=len(me))
         # return render_template('user.html', user=username,filename=filename,name=data,songname=filedir,song=data,link=data)
     else:
         errorMsg='<i class="bi bi-exclamation-triangle-fill"></i> 僅允許上傳mp4、mov影像檔'
