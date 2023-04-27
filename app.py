@@ -340,7 +340,7 @@ def upload_file():
         os.chmod(filepath, 0o777)
         os.chmod(filepath+'/input.mp3', 0o777)
         while(1):
-            if(os.path.isfile(filepath +'/output.txt') and os.path.isfile(filepath +'/computing2')):
+            if(os.path.isfile(filepath +'/output.txt') and os.path.isfile(filepath +'/computing2') and os.path.isfile(filepath+'/outputlyric.txt') and os.path.isfile(filepath+'/outputmelody.txt')):
                 break
         f = open(filedir,'r')
         # data=f.read()
