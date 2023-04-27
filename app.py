@@ -325,6 +325,7 @@ def upload_file():
         info.clear()
         ryric=''
         filedir=filepath+'/output.txt'
+        filename = 'output.txt'
         while(1):
             if(os.path.isfile(filepath +'/output.txt')):
                 break
