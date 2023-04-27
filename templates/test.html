@@ -122,9 +122,11 @@
 
                 }
                 for(let j=1 ; j<=id_group.length;j++){
+                    
                     for(i=1;i<=id_group.length;i++){
-                        document.getElementById(`${j}status${nums[i - 1]}`).innerHTML =  '';
+                        document.getElementById(`${j}status${i}`).innerHTML =  '';
                     }
+
                     document.getElementById(`id${j}`).innerHTML = id_group[j-1];
                     document.getElementById(`${j}status${nums[j - 1]}`).innerHTML =  '✔️';
                 }

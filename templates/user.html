@@ -58,12 +58,14 @@
         <div>{{link}}</div>
         <label>{{filename}}已上傳</label>
         <!-- 如果filename變數值不是空的，則顯示影像。 -->
+        <div class="row">
         <div class="col-4">
             {% for i in range(1, size+1) %}
                     <div class="left">{{lr[i-1]}}</div>
                     <button class="btn btn-primary" onclick="location.href='{{url[i]}}'">前往</button>
             {% endfor %}
         </div>
+
         <div class="col-4">
         <div class="card mx-auto" style="width: 18rem;" id="fin" style="display: block;">
             <img class="card-img-top" src={{link}} alt="Card image cap">
@@ -81,6 +83,7 @@
                  <div class="left">{{me[i-1]}}</div>
             {% endfor %}
         </div>
+    </div>
         {% endif %}
         <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}" onsubmit="return checkSubmit(this)">
             <div id="wait" style="display:none">
