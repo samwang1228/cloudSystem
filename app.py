@@ -4,10 +4,10 @@ from fileinput import filename
 import json
 from datetime import datetime
 import sqlite3
- 
+import time
 import subprocess
 import pathlib
- 
+import random 
 from flask import Flask, g, flash, url_for, redirect,  render_template, request, session, abort, redirect
 from flask_login import LoginManager, UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 import os
@@ -253,7 +253,8 @@ def user():
 @app.route('/status')
 def read_text():
     text=''
-    path = os.path.join('share','uploads','user','result')
+    # path = os.path.join('share','uploads','user','result')
+    path='/share'
     obj = os.scandir(path)
     cnt=0
     # print("Files and Directories in '% s':" % path)
@@ -309,18 +310,26 @@ def upload_file():
     if file and allowed_file(file.filename):   # 確認有檔案且副檔名在允許之列
         # filename = secure_filename(file.filename)  # 轉成「安全的檔名」 
         
-        filename = file.filename
-        filepath = os.path.join(SRC_PATH,  'share', 'uploads',username)
-        file.save(os.path.join(filepath, filename))
+        # filename = file.filename
+        
+        # filepath = os.path.join(SRC_PATH,  'share', 'uploads',username)
+        t=time.time()
+        r=random.randrange(0, 101, 2)
+        filepath='/share/' + str(t) +'/' +str(r)
+        os.makedirs(filepath ,exist_ok=True)
+        file.save(os.path.join(filepath, 'input.mp3'))
         #  result path
-        filepath = os.path.join(SRC_PATH,  'share', 'uploads',username,'result',filename.split('.')[0])
-        os.makedirs(filepath, exist_ok=True)
+        # filepath = os.path.join(SRC_PATH,  'share', 'uploads',username,'result',filename.split('.')[0])
+        # os.makedirs(filepath, exist_ok=True)
         info.clear()
-        f = open(os.path.join(filepath,'test.txt'),encoding='utf-8')
+        while(1):
+            if(os.path.isfile(filepath +'/output.txt')):
+                break
+        f = open(os.path.join(filepath,'output.txt'),encoding='utf-8')
         for line in f.readlines():
             info.append(line)
         f.close
-        time.sleep(10)
+        # time.sleep(10)
         picUrl=str(info[2])
         root=f'{filepath}\\' #影片的位置
         video_name=filename #影片的名字
