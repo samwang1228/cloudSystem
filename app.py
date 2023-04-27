@@ -355,7 +355,7 @@ def upload_file():
         video_name=filename #影片的名字
         flash('檔案上傳完畢！')
         # 顯示頁面並傳入上傳的檔名
-        return render_template('user.html', user=username,filename=filename,name=info[1],songname=info[0],song=ryric,link=picUrl[6:len(picUrl)-1])
+        return render_template('user.html', user=username,filename=filename,name=info[1],songname=picUrl[6:len(picUrl)-1],song=ryric,link=picUrl[6:len(picUrl)-1])
         # return render_template('user.html', user=username,filename=filename,name=data,songname=filedir,song=data,link=data)
     else:
         errorMsg='<i class="bi bi-exclamation-triangle-fill"></i> 僅允許上傳mp4、mov影像檔'
