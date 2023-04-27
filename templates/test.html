@@ -130,7 +130,7 @@
                         document.getElementById(`${j}status${i}`).innerHTML =  '';
                     }
                     var folderInput = document.getElementById(`folder-input${j}`);
-                    folderInput.value = `id${j}`;
+                    folderInput.value = id_group[j-1];
                     document.getElementById(`id${j}`).innerHTML = id_group[j-1];
                     document.getElementById(`${j}status${nums[j - 1]}`).innerHTML =  '✔️';
                 }
