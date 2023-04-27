@@ -51,7 +51,9 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">排隊中</th>
-                    <th scope="col">計算中</th>
+                    <th scope="col">comp1</th>
+                    <th scope="col">comp2</th>
+                    <th scope="col">comp3</th>
                     <th scope="col">完成</th>
                     <th></th>
                 </tr>
@@ -72,6 +74,12 @@
                     </td>
                     <td>
                         <div id="{{i}}status3"></div>
+                    </td>
+                    <td>
+                        <div id="{{i}}status4"></div>
+                    </td>
+                    <td>
+                        <div id="{{i}}status5"></div>
                     </td>
                     <td>
                     
@@ -133,13 +141,19 @@
                 }
                 for(let j=1 ; j<=id_group.length;j++){
 
-                    for(let i=1;i<=3;i++){
+                    for(let i=1;i<=5;i++){
                         document.getElementById(`${j}status${i}`).innerHTML =  '';
                     }
                     var folderInput = document.getElementById(`folder-input${j}`);
                     folderInput.value = id_group[j-1];
                     document.getElementById(`id${j}`).innerHTML = id_group[j-1];
-                    document.getElementById(`${j}status${nums[j - 1]}`).innerHTML =  '✔️';
+                    if($nums[j-1]=='6'){
+                        document.getElementById(`${j}status4`).innerHTML =  '✔️';
+                        document.getElementById(`${j}status3`).innerHTML =  '✔️';
+                    }
+                    else{
+                        document.getElementById(`${j}status${nums[j - 1]}`).innerHTML =  '✔️';
+                    }
                 }
                 // document.getElementById(`id`).innerHTML = id_group;
                 // document.getElementById(`st`).innerHTML = nums;

@@ -264,6 +264,8 @@ def read_text():
         elif(entry.name=='core'):
             continue
         state = os.path.join(path , entry.name,'computing')
+        comp2 = os.path.join(path,entry.name,'computing2')
+        comp3 = os.path.join(path,entry.name,'computing3')
         output = os.path.join(path , entry.name ,'output.txt')
         inputfile = os.path.join(path , entry.name ,'input.mp3')
         lr=os.path.join(path,entry.name,'outputlyric.txt')
@@ -271,6 +273,12 @@ def read_text():
         text+=entry.name
         text+=' '
         if os.path.isfile(output) and os.path.isfile(lr) and os.path.isfile(melody):
+            text+='5'
+        elif os.path.isfile(comp3) and os.path.isfile(comp2):
+            text+='6'
+        elif os.path.isfile(comp3) and  (not os.path.isfile(melody)):
+            text+='4'
+        elif os.path.isfile(comp2) and (not os.path.isfile(lr)):
             text+='3'
         elif os.path.isfile(state):
             text+='2'
