@@ -324,13 +324,15 @@ def upload_file():
         # os.makedirs(filepath, exist_ok=True)
         info.clear()
         ryric=''
+        filedir=filepath+'/output.txt'
         while(1):
             if(os.path.isfile(filepath +'/output.txt')):
                 break
-        f = open(os.path.join(filepath,'output.txt'),encoding='utf-8')
+        f = open(filedir,encoding='utf-8')
         cnt=0
         for line in f.readlines():
             cnt+=1
+            print('--------',cnt,'---------')
             if(cnt>=4):
                 ryric+=str(line)
             info.append(line)
