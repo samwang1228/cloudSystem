@@ -378,7 +378,7 @@ def upload_file():
         filedir = filepath+'/outputlyric.txt'
         f = open(filedir,'r')
         for line in f.readlines():
-            lr.append(line[0:line.find('https/')])
+            lr.append(line[0:line.find('https')])
             url.append(line[line.find('http'):len(line)-1])
         # time.sleep(10)
         f.close

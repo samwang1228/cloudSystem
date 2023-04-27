@@ -46,27 +46,33 @@
 
     <header class="upload text-center  ">
         <h1>System Status</h1>
+        <div class="row">
         <h2>web server</h2>
             {% for line in top_output %}
             <div>{{ line }}</div>
             {% endfor %}
+        </div>
         <div class="row">
-            <h1> core1</h1>
+            
             <div class="col-4">
+            <h1> core1</h1>
                 {% for line in core1 %}
             <div>{{ line }}</div>
             {% endfor %}
             </div>
-            <h1>core2</h1>
+           
             <div class="col-4">
+                <h1>core2</h1>
                 {% for line in core2 %}
             <div>{{ line }}</div>
             {% endfor %}
             </div>
-            <h1>core3</h1>
+            
             <div class="col-4">
+                <h1>core3</h1>
                 {% for line in core3 %}
             <div>{{ line }}</div>
+
             {% endfor %}
             </div>
         </div>

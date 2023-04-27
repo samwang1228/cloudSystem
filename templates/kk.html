@@ -45,24 +45,55 @@
         
         
     <!-- -- 如果filename變數值不是空的，則顯示影像。 --> 
-    <div class="row">
-        <div class="col-4"><div >oo</div><button class="btn btn-danger btn-delete" onclick="location.href='{{url[i]}}'">前往</button><div >oo</div><button class="btn btn-danger btn-delete" onclick="location.href='{{url[i]}}'">前往</button></div>
+    <header class="upload text-center  ">
         <div class="col-4">
-        <div class="card mx-auto" style="width: 18rem;" id="fin" style="display: block;">
-            <img class="card-img-top" src={{link}} alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">kk</h5>
-              <h6 class="card-subtitle mb-2 text-muted">kk</h6>
-              <p class="card-text">kk</p>
-              <a href="#" class="btn btn-primary">kk</a>
+                    <div class="left">ii<button class="btn btn-primary" onclick="location.href='{{url[i]}}'">前往</button></div>
+                    
+        </div>
+        <h1>System Status</h1>
+        <div class="row">
+        <h2>web server</h2>
+            {% for line in top_output %}
+            <div>{{ line }}</div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            
+            <div class="col-4">
+            <h1> core1</h1>
+                {% for line in core1 %}
+            <div>{{ line }}</div>
+            {% endfor %}
             </div>
-          </div>
+           
+            <div class="col-4">
+                <h1>core2</h1>
+                {% for line in core2 %}
+            <div>{{ line }}</div>
+            {% endfor %}
+            </div>
+            
+            <div class="col-4">
+                <h1>core3</h1>
+                {% for line in core3 %}
+            <div>{{ line }}</div>
+
+            {% endfor %}
+            </div>
         </div>
-        <div class="col-4">gggg</div>
-        </div>
+
+
     </header>
 
 
+
+
+    <!-- Footer-->
+    {% extends "footer.html" %}
+
+</body>
+
+</html>
 
 
     <!-- Footer-->
