@@ -259,6 +259,8 @@ def read_text():
     cnt=0
     # print("Files and Directories in '% s':" % path)
     for entry in obj :
+        if(entry.name=='songs'):
+            continue
         state = os.path.join(path , entry.name,'computing')
         output = os.path.join(path , entry.name ,'output.txt')
         inputfile = os.path.join(path , entry.name ,'input.mp3')
@@ -335,7 +337,7 @@ def upload_file():
         while(1):
             if(os.path.isfile(filepath +'/output.txt')):
                 break
-        f = open(filedir)
+        f = open(filedir,'r')
         data=f.read()
         # info.append()
         cnt=0
