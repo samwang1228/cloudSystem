@@ -242,8 +242,7 @@ def manager():
             'SELECT password FROM members '
         ).fetchall()
     size = len(user_id)
-    return render_template('manager.html',user=user,user_id=user_id,password=password,size=size)
- 
+    f
 
 @app.route("/user.html")
 @login_required
@@ -388,6 +387,8 @@ def upload_file():
         while(1):
             if(os.path.isfile(filepath +'/output.txt') and os.path.isfile(filepath +'/computing2') and os.path.isfile(filepath+'/outputlyric.txt') and os.path.isfile(filepath+'/outputmelody.txt')):
                 break
+            if not os.path.isdir(filepath):
+                return render_template('index.html',u=current_user.get_id())
         f = open(filedir,'r')
         # data=f.read()
         # info.append()
