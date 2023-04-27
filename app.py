@@ -280,9 +280,13 @@ def get_text():
     path = '/share'
     obj = os.scandir(path)
     cnt=0
+    tt=0
     # print("Files and Directories in '% s':" % path)
     for entry in obj :
-        cnt+=1
+        if(entry.name=='songs'):
+            tt=0
+        else:
+            cnt+=1
     return render_template('test.html',size=cnt)
 
 @app.route('/top')
@@ -326,6 +330,8 @@ def upload_file():
         ryric=''
         filedir=filepath+'/output.txt'
         filename = 'output.txt'
+        os.chmod(filepath, 0o777)
+        os.chmod(filepath+'/input.mp3', 0o777)
         while(1):
             if(os.path.isfile(filepath +'/output.txt')):
                 break
