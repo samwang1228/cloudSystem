@@ -279,7 +279,16 @@ def read_text():
             text+='1'
         text+=' '
     return text
-
+@app.route('/delete-folder', methods=['POST'])
+def delete_folder():
+    # path='/share'
+    folder_name = request.form['folder_name']
+    path='/share/'+folder_name
+    try:
+        os.rmdir(path)
+        return "資料夾已刪除"
+    except OSError as e:
+        return "刪除失敗：{}".format(e)
 @app.route('/text')
 def get_text():
     # path = os.path.join('share','uploads','user','result')
