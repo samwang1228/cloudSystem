@@ -268,7 +268,7 @@ def read_text():
         melody=os.path.join(path,entry.name,'outputmelody.txt')
         text+=entry.name
         text+=' '
-        if os.path.isfile(output) and os.path.isfile(melody) and os.path.isfile(melody):
+        if os.path.isfile(output) and os.path.isfile(lr) and os.path.isfile(melody):
             text+='3'
         elif os.path.isfile(state):
             text+='2'

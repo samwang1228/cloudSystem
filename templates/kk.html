@@ -39,61 +39,27 @@
 
 <body id="page-top">
     <!-- Navigation-->
-    {% include "base.html" %}
-    <!-- Masthead-->
-    {% include "side-menu.html" %}
+   
     <header class="upload text-center  ">
-        <h1> {{user}}</h1>
-        <h1>上傳音樂檔</h1>
-        <h2 style="color:red;"> {{ errorMsg|safe }} </h2>
-        {% with msg = get_flashed_messages() %}
-        {% if msg %}
-        <!-- 如果msg變數值不是空的… -->
-        {% for m in msg %}
-        <p>{{ m }}</p> <!-- 顯示快閃訊息 -->
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-        {% if filename %}
-        <div>{{link}}</div>
-        <label>{{filename}}已上傳</label>
-        <!-- 如果filename變數值不是空的，則顯示影像。 -->
-        <div class="col-4">
-            {% for i in range(1, size+1) %}
-                    <div class="left">{{lr[i-1]}}</div>
-                    <button class="btn btn-primary" onclick="location.href='{{url[i]}}'">前往</button>
-            {% endfor %}
-        </div>
+       
+        
+        
+    <!-- -- 如果filename變數值不是空的，則顯示影像。 --> 
+    <div class="row">
+        <div class="col-4"><div >oo</div><button class="btn btn-danger btn-delete" onclick="location.href='{{url[i]}}'">前往</button><div >oo</div><button class="btn btn-danger btn-delete" onclick="location.href='{{url[i]}}'">前往</button></div>
         <div class="col-4">
         <div class="card mx-auto" style="width: 18rem;" id="fin" style="display: block;">
             <img class="card-img-top" src={{link}} alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">{{name}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{songname}}</h6>
-              <p class="card-text">{{song}}</p>
-              <!-- <a href="#" class="btn btn-primary">Go here</a> -->
+              <h5 class="card-title">kk</h5>
+              <h6 class="card-subtitle mb-2 text-muted">kk</h6>
+              <p class="card-text">kk</p>
+              <a href="#" class="btn btn-primary">kk</a>
             </div>
           </div>
         </div>
-
-           <div class="col-4">
-                {% for i in range(1, size2+1) %}
-                 <div class="left">{{me[i-1]}}</div>
-            {% endfor %}
+        <div class="col-4">gggg</div>
         </div>
-        {% endif %}
-        <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}" onsubmit="return checkSubmit(this)">
-            <div id="wait" style="display:none">
-                <p>Please wait while the file is being uploaded...</p>
-                <img src="{{ url_for('static', filename='images/ani.gif') }}">
-            </div>
-            <button class="btn btn-outline-info" onclick="document.getElementById('getFile').click()"value="select" name="select">選擇檔案</button>
-            <input type="file" id="getFile" style="display:none" name="filename"  required>
-            <input type="submit" class="btn btn-outline-info" value="上傳" onclick="onUploadButton()">
-            <h1><label id="file-name"></label></h1>
-
-        </form>
-           
     </header>
 
 
