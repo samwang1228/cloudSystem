@@ -296,6 +296,7 @@ def get_text():
     obj = os.scandir(path)
     cnt=0
     tt=0
+    file=[]
     # print("Files and Directories in '% s':" % path)
     for entry in obj :
         if(entry.name=='songs'):
@@ -304,7 +305,8 @@ def get_text():
             tt=0
         else:
             cnt+=1
-    return render_template('test.html',size=cnt)
+            file.append(entry.name)
+    return render_template('test.html',size=cnt,folders=file)
 
 @app.route('/top')
 def show_top():
