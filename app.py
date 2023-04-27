@@ -338,25 +338,25 @@ def upload_file():
             if(os.path.isfile(filepath +'/output.txt') and os.path.isfile(filepath +'/computing2')):
                 break
         f = open(filedir,'r')
-        data=f.read()
+        # data=f.read()
         # info.append()
         cnt=0
-        # for line in f.readlines():
-            # cnt+=1
-            # print('--------',cnt,'---------')
-            # if(cnt>=4):
-                # ryric+=str(line)
-            # info.append(line)
+        for line in f.readlines():
+            cnt+=1
+            print('--------',cnt,'---------')
+            if(cnt>=4):
+                ryric+=str(line)
+            info.append(line)
         f.close
 
         # time.sleep(10)
-        # picUrl=str(info[2])
+        picUrl=str(info[2])
         root=f'{filepath}\\' #影片的位置
         video_name=filename #影片的名字
         flash('檔案上傳完畢！')
         # 顯示頁面並傳入上傳的檔名
-        # return render_template('user.html', user=username,filename=filename,name=info[1],songname=info[0],song=ryric,link=picUrl[6:len(picUrl)-1])
-        return render_template('user.html', user=username,filename=filename,name=data,songname=filedir,song=data,link=data)
+        return render_template('user.html', user=username,filename=filename,name=info[1],songname=info[0],song=ryric,link=picUrl[6:len(picUrl)-1])
+        # return render_template('user.html', user=username,filename=filename,name=data,songname=filedir,song=data,link=data)
     else:
         errorMsg='<i class="bi bi-exclamation-triangle-fill"></i> 僅允許上傳mp4、mov影像檔'
         return render_template('user.html',errorMsg=errorMsg,user=username)  # 令瀏覽器跳回首頁
