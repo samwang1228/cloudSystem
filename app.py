@@ -261,6 +261,8 @@ def read_text():
     for entry in obj :
         if(entry.name=='songs'):
             continue
+        elif(entry.name=='core'):
+            continue
         state = os.path.join(path , entry.name,'computing')
         output = os.path.join(path , entry.name ,'output.txt')
         inputfile = os.path.join(path , entry.name ,'input.mp3')
@@ -289,16 +291,36 @@ def get_text():
     for entry in obj :
         if(entry.name=='songs'):
             tt=0
+        elif(entry.name=='core'):
+            tt=0
         else:
             cnt+=1
     return render_template('test.html',size=cnt)
 
 @app.route('/top')
 def show_top():
+    core1=[]
+    core2=[]
+    core3=[]
     process = subprocess.Popen(['top', '-bn', '1', '-i', '-c'], stdout=subprocess.PIPE)
     output, error = process.communicate()
     top_output = output.decode('utf-8').split('\n')
-    return render_template('cpu.html', top_output=top_output)
+    path1='/share/core/core1.txt'
+    path2='/share/core/core2.txt'
+    path3='/share/core/core3.txt'
+    f = open(path1,'r')    
+    for line in f.readlines():
+        core1.append(line)
+    f.close
+    f = open(path2,'r')    
+    for line in f.readlines():
+        core2.append(line)
+    f.close
+    f = open(path3,'r')    
+    for line in f.readlines():
+        core3.append(line)
+    f.close
+    return render_template('cpu.html', top_output=top_output,core1=core1,core2=core2,core3=core3)
 
 
 @app.route('/user.html', methods=['POST'])
