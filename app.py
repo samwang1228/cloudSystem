@@ -264,9 +264,11 @@ def read_text():
         state = os.path.join(path , entry.name,'computing')
         output = os.path.join(path , entry.name ,'output.txt')
         inputfile = os.path.join(path , entry.name ,'input.mp3')
+        lr=os.path.join(path,entry.name,'outputlyric.txt')
+        melody=os.path.join(path,entry.name,'outputmelody.txt')
         text+=entry.name
         text+=' '
-        if os.path.isfile(output):
+        if os.path.isfile(output) and os.path.isfile(melody) and os.path.isfile(melody):
             text+='3'
         elif os.path.isfile(state):
             text+='2'
@@ -355,7 +357,7 @@ def upload_file():
         video_name=filename #影片的名字
         flash('檔案上傳完畢！')
         # 顯示頁面並傳入上傳的檔名
-        return render_template('user.html', user=username,filename=filename,name=info[1],songname=picUrl[6:len(picUrl)-1],song=ryric,link=picUrl[6:len(picUrl)-1])
+        return render_template('user.html', user=username,filename=filename,name=info[1],songname=info[0],song=ryric,link=picUrl[6:len(picUrl)-1])
         # return render_template('user.html', user=username,filename=filename,name=data,songname=filedir,song=data,link=data)
     else:
         errorMsg='<i class="bi bi-exclamation-triangle-fill"></i> 僅允許上傳mp4、mov影像檔'
