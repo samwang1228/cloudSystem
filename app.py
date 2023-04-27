@@ -276,7 +276,8 @@ def read_text():
 
 @app.route('/text')
 def get_text():
-    path = os.path.join('share','uploads','user','result')
+    # path = os.path.join('share','uploads','user','result')
+    path = '/share'
     obj = os.scandir(path)
     cnt=0
     # print("Files and Directories in '% s':" % path)
