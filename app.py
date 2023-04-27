@@ -284,6 +284,7 @@ def read_text():
 def delete_folder():
     # path='/share'
     file=[]
+    cnt=0
     folder_name = request.form['folder_name']
     path='/share/'+folder_name
     try:
