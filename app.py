@@ -8,6 +8,7 @@ import time
 import subprocess
 import pathlib
 import random 
+import shutil
 from flask import Flask, g, flash, url_for, redirect,  render_template, request, session, abort, redirect
 from flask_login import LoginManager, UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 import os
@@ -285,8 +286,8 @@ def delete_folder():
     folder_name = request.form['folder_name']
     path='/share/'+folder_name
     try:
-        os.rmdir(path)
-        return "資料夾已刪除"
+        shutil.rmtree(path)
+        redirect(url_for('text'))
     except OSError as e:
         return "刪除失敗：{}".format(e)
 @app.route('/text')
