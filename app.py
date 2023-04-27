@@ -316,7 +316,7 @@ def upload_file():
         # filepath = os.path.join(SRC_PATH,  'share', 'uploads',username)
         t=time.time()
         r=random.randrange(0, 101, 2)
-        filepath='/share/' + str(t) +'/' +str(r)
+        filepath='/share/' + str(t)  +str(r)
         os.makedirs(filepath ,exist_ok=True)
         file.save(os.path.join(filepath, 'input.mp3'))
         #  result path
